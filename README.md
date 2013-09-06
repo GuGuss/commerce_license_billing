@@ -18,8 +18,10 @@ depending on your billing cycle type settings), along with a matching recurring 
 5. When the billing cycle expires, the recurring order will be closed and charged for
 using Commerce Card on File, and a new billing cycle & order will be opened.
 
-Prepaid billing
----------------
+Billing period
+--------------
+
+### Prepaid billing
 Prepaid products are paid up front.
 That means that if a customer registers on April 1st, he will immediately pay the
 monthly fee for April. On the first day of May, he will be charged for the
@@ -30,8 +32,7 @@ The other half of the May monthly fee will not be refunded, since that is
 not currently implemented (a common strategy being to award the customer
 points to be used for discounting future purchases).
 
-Postpaid billing
-----------------
+### Postpaid billing
 Postpaid products are paid at the end of the billing cycle.
 That means that if the customer registers on April 1st, his order is free and he pays
 nothing. On the first day of May, he will be charged for the April monthly fee,
@@ -50,8 +51,10 @@ If the end timestamp is missing, it is assumed that the record is still active /
 so the current timestamp is taken as the end instead in order to give a cost estimation.
 The duration (end - start) is compared to the billing cycle duration, and the record is priced proportionally.
 
-Plan-based billing
-------------------
+Billing amount
+--------------
+
+### Plan-based billing
 Each license has one plan at a given point of time, which is the referenced product.
 Different plans are represented by different products, all pointing to the
 same license type / billing cycle type / payment type.
@@ -69,8 +72,7 @@ The start and end times are used for prorating plans during later billing
 (allowing you to charge the customer for both plans, proportionaly to the
 time they were used).
 
-Metered (usage-based) billing
------------------------------
+### Metered (usage-based) billing
 If a license type implements the CommerceLicenseBillingUsageInterface interface
 and declares its usage groups, the module will allow usage to be
 registered and calculated for each usage group separately, and charge for it
@@ -116,7 +118,7 @@ Billing cycle types
 -------------------
 Billing cycle types are exportable entities managed on admin/config/licenses/billing-cycle-types.
 Each billing cycle type has a bundle, the billing cycle engine, powered by
-<a href="a href="https://drupal.org/project/entity_bundle_plugin">entity bundle plugin</a>.
+<a href="https://drupal.org/project/entity_bundle_plugin">entity bundle plugin</a>.
 This allows each billing cycle type to have methods for creating and naming new billing cycles.
 See CommerceLicenseBillingCycleEngineInterface and CommerceLicenseBillingCycleTypeBase
 for more information.
